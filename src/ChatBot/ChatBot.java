@@ -10,6 +10,15 @@ public class ChatBot {
 
         Scanner scan = new Scanner(System.in);
         String user = scan.nextLine();
-        System.out.println("What a great name you have, " + user + "!");
+        System.out.println("What a great name you have, " + user + "!\nLet me guess your age.\n" +
+                "Enter remainders of dividing your age by 3, 5 and 7.");
+        Scanner scan1 = new Scanner(System.in);
+        int remainder3 = scan1.nextInt();
+        Scanner scan2 = new Scanner(System.in);
+        int remainder5 = scan2.nextInt();
+        Scanner scan3 = new Scanner(System.in);
+        int remainder7 = scan3.nextInt();
+        int age = (remainder3 * 70 + remainder5 * 21 + remainder7 * 15) % 105;
+        System.out.println("Your age is " + age + " that`s a good time to start programming!");
     }
 }
