@@ -22,25 +22,28 @@ public class hangman {
             if (attempt > 0) {
                 System.out.print("\n" + s + "\nInput a letter:");
                 String user = scan.nextLine();
-                letters.add(user);
-                attempt--;
                 if (randomWord.contains(user)) {
-                    for (int i = 0; i < randomWord.length(); i++) {
-                        if (hypo[i] == user.charAt(0)) {
-                            s.setCharAt(i, user.charAt(0));
+                    if (letters.contains(user)) {
+                        System.out.println("No improvements");
+                        attempt--;
+                    } else {
+                        for (int i = 0; i < randomWord.length(); i++) {
+                            if (hypo[i] == user.charAt(0)) {
+                                s.setCharAt(i, user.charAt(0));
+                            }
                         }
                     }
                     if (s.toString().equals(randomWord)) {
-                        System.out.println("Thanks for playing!\n" +
-                                "We'll see how well you did in the next stage");
+                        System.out.println(s + "\nYou guessed the word!\nYou survive!");
                         boolTrue = false;
                     }
                 } else {
                     System.out.println("That letter doesn't appear in the word");
+                    attempt--;
                 }
+                letters.add(user);
             } else {
-                System.out.println("Thanks for playing!\n" +
-                        "We'll see how well you did in the next stage");
+                System.out.println("You lost!");
                 boolTrue = false;
             }
         }
