@@ -22,26 +22,33 @@ public class hangman {
             if (attempt > 0) {
                 System.out.print("\n" + s + "\nInput a letter:");
                 String user = scan.nextLine();
-                if (randomWord.contains(user)) {
-                    if (letters.contains(user)) {
-                        System.out.println("No improvements");
-                        attempt--;
+                if (!user.matches("[a-z?]") | user.length() > 1) {
+                    if (!user.matches("[a-z?]") & !(user.length() > 1)) {
+                        System.out.println("Please enter a lowercase English letter");
                     } else {
-                        for (int i = 0; i < randomWord.length(); i++) {
-                            if (hypo[i] == user.charAt(0)) {
-                                s.setCharAt(i, user.charAt(0));
-                            }
-                        }
-                    }
-                    if (s.toString().equals(randomWord)) {
-                        System.out.println(s + "\nYou guessed the word!\nYou survive!");
-                        boolTrue = false;
+                        System.out.println("You should input a single letter");
                     }
                 } else {
-                    System.out.println("That letter doesn't appear in the word");
-                    attempt--;
+                    if (randomWord.contains(user)) {
+                        if (letters.contains(user)) {
+                            System.out.println("You've already guessed this letter");
+                        } else {
+                            for (int i = 0; i < randomWord.length(); i++) {
+                                if (hypo[i] == user.charAt(0)) {
+                                    s.setCharAt(i, user.charAt(0));
+                                }
+                            }
+                        }
+                        if (s.toString().equals(randomWord)) {
+                            System.out.println(s + "\nYou guessed the word!\nYou survive!");
+                            boolTrue = false;
+                        }
+                    } else {
+                        System.out.println("That letter doesn't appear in the word");
+                        attempt--;
+                    }
+                    letters.add(user);
                 }
-                letters.add(user);
             } else {
                 System.out.println("You lost!");
                 boolTrue = false;
