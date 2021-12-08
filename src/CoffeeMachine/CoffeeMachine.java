@@ -8,7 +8,7 @@ public class CoffeeMachine {
     static int beans = 120;
     static int money = 550;
     static int cups = 9;
-    //Эспрессо
+    //ЭспрессоS
     static int espressoWater = 250;
     static int espressoBeans = 16;
     static int espressoCost = 4;
