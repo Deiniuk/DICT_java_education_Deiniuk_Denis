@@ -29,9 +29,10 @@ public class CoffeeMachine {
     static int totalMoney = money;
     static int totalCups = cups;
     static Scanner scan;
+    Menu m = new Menu();
     public static void main(String[] args) {
         scan = new Scanner(System.in);
-        menu();
+        Menu.menu();
     }
     public static void remaining() {
         System.out.println("The coffee machine has: \n" +
@@ -46,21 +47,7 @@ public class CoffeeMachine {
                         totalMoney +
                         " of money");
     }
-    private static void menu() {
-        do {
-            System.out.print("Write action (buy, fill, take, remaining, exit):\n> ");
-            String menuUser = scan.nextLine();
-            switch (menuUser) {
-                case "buy" -> buy();
-                case "fill" -> fill();
-                case "take" -> take();
-                case "remaining" -> remaining();
-                case "exit" -> System.exit(0);
-                default -> System.out.println("ERROR ");
-            }
-        }while(true);
-    }
-    private static void buy() {
+    public static void buy() {
         System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:\n> ");
         String buyUser = scan.nextLine();
         switch (buyUser) {
@@ -73,14 +60,14 @@ public class CoffeeMachine {
             case "3" -> {
                 cappuccino();
             }
-            case "back" -> menu();
+            case "back" -> Menu.menu();
             default -> {
                 System.out.println("ERROR ");
                 buy();
             }
         }
     }
-    public static void espresso(){
+    private static void espresso(){
         if (totalWater < espressoWater){
             System.out.println("Sorry, not enough water!");
         }
@@ -98,7 +85,7 @@ public class CoffeeMachine {
             totalCups -= 1;
         }
     }
-    public static void latte(){
+    private static void latte(){
         if (totalWater < latteWater){
             System.out.println("Sorry, not enough water!");
         }
@@ -120,7 +107,7 @@ public class CoffeeMachine {
             totalCups -= 1;
         }
     }
-    public static void cappuccino(){
+    private static void cappuccino(){
         if (totalWater < cappuccinoWater){
             System.out.println("Sorry, not enough water!");
         }
@@ -156,5 +143,25 @@ public class CoffeeMachine {
     public static void take() {
         System.out.println("I gave you " + totalMoney + "");
         totalMoney = 0;
+    }
+}
+
+class Menu{
+    CoffeeMachine cm = new CoffeeMachine();
+    static Scanner scan;
+    public static void menu() {
+        do {
+            scan = new Scanner(System.in);
+            System.out.print("Write action (buy, fill, take, remaining, exit):\n> ");
+            String menuUser = scan.nextLine();
+            switch (menuUser) {
+                case "buy" -> CoffeeMachine.buy();
+                case "fill" -> CoffeeMachine.fill();
+                case "take" -> CoffeeMachine.take();
+                case "remaining" -> CoffeeMachine.remaining();
+                case "exit" -> System.exit(0);
+                default -> System.out.println("ERROR ");
+            }
+        }while(true);
     }
 }
