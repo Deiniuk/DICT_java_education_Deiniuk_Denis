@@ -8,34 +8,32 @@ public class Matrix {
 
         int rows;
         int columns;
-        System.out.println("Enter size of first matrix: ");
+        System.out.println("Enter size of the matrix: ");
         rows = sc.nextInt();
         columns = sc.nextInt();
+
         System.out.println("Enter matrix: ");
-        int[][] mat1 = fillMatrix(rows,columns);
 
-        System.out.println("Enter size of second matrix: ");
-        rows = sc.nextInt();
-        columns = sc.nextInt();
+        int[][] matMultiply = fillMatrix(rows,columns);
 
-        System.out.println("Enter second matrix: ");
-        int[][] mat2 = fillMatrix(rows,columns);
+        System.out.println("Enter constonant: ");
+
+        int n = sc.nextInt();
 
         System.out.println("The result is: ");
 
-        sumUpMatrix(mat1,mat2,rows,columns);
+        multiplyMatrix(matMultiply,rows,columns,n);
     }
 
-    public static void sumUpMatrix(int[][] firstMatrix,int[][] secondMatrix,int rows, int columns) {
-
-        int[][] sum = new int[rows][columns];
+    public static void multiplyMatrix(int[][] firstMatrix,int rows, int columns,int c) {
+        int[][] pr = new int[rows][columns];
         for(int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                sum[i][j] = firstMatrix[i][j] + secondMatrix[i][j];
+                pr[i][j] = firstMatrix[i][j] * c;
             }
         }
 
-        printMatrix(sum);
+        printMatrix(pr);
     }
     public static int[][] fillMatrix(int rows, int columns) {
         Scanner sc = new Scanner(System.in);
