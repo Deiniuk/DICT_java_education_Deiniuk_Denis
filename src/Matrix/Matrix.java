@@ -13,6 +13,7 @@ public class Matrix {
             System.out.println("1. Add matrices\r\n" +
                     "2. Multiply matrix to a constant\r\n" +
                     "3. Multiply matrices\r\n" +
+                    "4. Transpose matrix\r\n" +
                     "0. Exit");
 
             int choice = sc.nextInt();
@@ -58,6 +59,15 @@ public class Matrix {
                     System.out.println("The multiplication result is:");
                     multiplyMatrices(mat1p, mat2p);
                 }
+                case 4 -> {
+                    System.out.println("Enter matrix size: ");
+                    rows = sc.nextInt();
+                    columns = sc.nextInt();
+                    System.out.println("Enter matrix: ");
+                    int[][] matTr = fillMatrix(rows, columns);
+                    System.out.println("The result is: ");
+                    transposeMatrix(matTr);
+                }
                 default -> System.exit(0);
             }
         }
@@ -88,6 +98,22 @@ public class Matrix {
             }
         }
         printMatrix(c);
+    }
+
+    public static void transposeMatrix(int[][]a) {
+        int n = a.length;
+        int m = a[0].length;
+
+        int tr[][] = new int[n][m];
+
+        for (int c = 0; c < m; c++) {
+            for (int d = 0; d < n; d++) {
+                tr[d][c] = a[c][d];
+            }
+        }
+
+        printMatrix(tr);
+
     }
 
     public static void multiplyMatrix(int[][] firstMatrix,int rows, int columns,int c) {
