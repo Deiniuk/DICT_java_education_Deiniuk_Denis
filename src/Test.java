@@ -1,7 +1,17 @@
-public class Test {
-    public static void main(String[] args) {
-        System.out.println("Java education");
-        //new string
-        System.out.println("DICT");
-    }
-}
+/*if(scan.nextLine().equals("back")) {
+            menu();
+        }else {
+            switch (scan.nextInt()) {
+                case 1 -> {
+                    espresso();
+                }
+                case 2 -> {
+                    latte();
+                }
+                case 3 -> {
+                    cappuccino();
+                }
+                default -> System.out.println("\n ERROR ");
+            }
+        }
+*/
